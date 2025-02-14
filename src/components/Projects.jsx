@@ -77,13 +77,31 @@ const Projects = () => {
 
   // Settings for react-slick (slider)
   const sliderSettings = {
-    dots: true,
+    dots: true, 
     infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000, // Gambar akan berpindah setiap 3 detik
+    speed: 500, 
+    slidesToShow: 1, 
+    slidesToScroll: 1, 
+    autoplay: true, 
+    autoplaySpeed: 3000,
+  };
+  
+  // Ref untuk mendeteksi apakah elemen terlihat atau tidak
+  const ref = useRef(null);
+  const isInView = useInView(ref, { threshold: 0.2, once: true });
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 1, ease: "easeInOut" }, // Durasi lebih lama dan easing lebih smooth
+    },
+  };
+  
+  const flipIn = {
+    hidden: { opacity: 0, rotateY: -90 }, // Mulai terbalik
+    visible: { opacity: 1, rotateY: 0, transition: { duration: 1, ease: "easeOut" } },
   };
 
   return (

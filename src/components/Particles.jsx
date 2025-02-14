@@ -4,7 +4,6 @@ import { loadSlim } from "tsparticles-slim";
 
 const GlowingParticles = () => {
   const particlesInit = useCallback(async (engine) => {
-    console.log("Particles engine loaded!");
     await loadSlim(engine);
   }, []);
   console.log("Rendering GlowingParticles");
@@ -14,7 +13,7 @@ const GlowingParticles = () => {
       className="absolute inset-0 w-full h-full bg-black/30" 
       init={particlesInit}
       options={{
-        fullScreen: { enable: true, zIndex: -5 }, // ✅ Turunkan zIndex agar tidak tertutup
+        fullScreen: { enable: true, zIndex: -5 }, 
         particles: {
           number: {
             value: 30,
@@ -23,7 +22,7 @@ const GlowingParticles = () => {
               value_area: 800,
             },
           },
-          color: { value: "#ffcc00" }, // ✅ Warna tetap kuning
+          color: { value: "#ffcc00" }, 
           opacity: {
             value: 0.7,
             anim: { enable: true, speed: 1, opacity_min: 0.3, sync: false },
