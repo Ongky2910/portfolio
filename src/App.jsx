@@ -41,10 +41,6 @@ function App() {
       >
         <HelmetProvider>
           <Router>
-            {/* 🔥 Tambahkan div pembungkus supaya tidak menutupi elemen lain */}
-            <div className="absolute inset-0 ">
-              <GlowingParticles />
-            </div>
             <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
             <AnimatedRoutes />
           </Router>
@@ -60,8 +56,6 @@ function AnimatedRoutes() {
   const sectionIds = ["home", "about"];
   const activeSection = useActiveSection(sectionIds);
 
-  useEffect(() => {
-  }, [activeSection]);
 
   return (
     <AnimatePresence mode="wait">
