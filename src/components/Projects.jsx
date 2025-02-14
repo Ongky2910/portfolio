@@ -59,12 +59,12 @@ const Projects = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 1, ease: "easeInOut" }, // Durasi lebih lama dan easing lebih smooth
+      transition: { duration: 1, ease: "easeInOut" }, 
     },
   };
   
   const flipIn = {
-    hidden: { opacity: 0, rotateY: -90 }, // Mulai terbalik
+    hidden: { opacity: 0, rotateY: -90 }, 
     visible: { opacity: 1, rotateY: 0, transition: { duration: 1, ease: "easeOut" } },
   };
 

@@ -7,7 +7,7 @@ const GlowingParticles = () => {
     console.log("Particles engine loaded!");
     await loadSlim(engine);
   }, []);
-
+  console.log("Rendering GlowingParticles");
   return (
     <Particles
       id="tsparticles"
