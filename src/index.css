@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #535bf2;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+  background: url('/assets/100-90-5.png');
+  background-blend-mode: overlay;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); opacity: 0.3; }
+  50% { transform: translateY(-10px); opacity: 0.5; }
+  100% { transform: translateY(0); opacity: 0.3; }
+}
+
+.floating-icon {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  opacity: 0.2;
+  filter: blur(5px);
+  background: rgba(219, 0, 0, 0.515);
+  border-radius: 50%;
+  animation: float 3s infinite ease-in-out;
+}
+
+.floating-icon.left{
+  top: 50px;
+  left: 100px;
+  background: rgba(78, 6, 233, 0.338);
+  filter: blur (10px) saturate(120%);
+  opacity: 0.6;
+}
+
+.floating-icon.right{
+  bottom: 50px;
+  right: 100px;
+  background: rgba(255, 100, 100, 0.431);
+  filter: blur (10px) saturate(120%);
+  opacity: 0.6;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); opacity: 0.3; }
+  50% { transform: translateY(-10px); opacity: 0.5;}
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.hover-effect {
+  transition: all 0.3s ease-in-out;
+}
+.hover-effect:hover {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.futuristic-border {
+  position: relative;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  background-color: #112240;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.5s ease-in-out; /* Smooth transition */
+  border: 2px solid rgba(100, 255, 218, 0.3); /* Border lebih soft */
+}
+
+.futuristic-border::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 0.85rem;
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, rgba(100, 255, 218, 0.3), rgba(0, 170, 255, 0.3));
+  opacity: 0.5;
+  filter: blur(6px);
+  transition: all 0.5s ease-in-out; 
+  z-index: -1;
+}
+
+.futuristic-border:hover {
+  border: 2px solid rgba(100, 255, 218, 0.7); 
+}
+
+.futuristic-border:hover::before {
+  opacity: 0.9;
+  filter: blur(10px);
+}
+
+.futuristic-border span,
+.futuristic-border p,
+.futuristic-border svg {
+  position: relative;
+  z-index: 2;
+}
+
+.futuristic-border.react {
+  border-color: rgba(97, 218, 251, 0.5); /* React biru */
+}
+.futuristic-border.react:hover {
+  border-color: rgba(97, 218, 251, 0.9);
+}
+
+.futuristic-border.node {
+  border-color: rgba(83, 155, 83, 0.5); /* Node hijau */
+}
+.futuristic-border.node:hover {
+  border-color: rgba(83, 155, 83, 0.9);
+}
+
+.futuristic-border.database {
+  border-color: rgba(255, 204, 0, 0.5); /* Database kuning */
+}
+.futuristic-border.database:hover {
+  border-color: rgba(255, 204, 0, 0.9);
+}
+
+.futuristic-border.tools {
+  border-color: rgba(255, 100, 100, 0.5); /* Tools merah */
+}
+.futuristic-border.tools:hover {
+  border-color: rgba(255, 100, 100, 0.9);
+}
+
+
+#tsparticles canvas {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  filter: blur(1px);
+  box-shadow: 0 0 10px #00ffff;
+
+}
+
+.underline-effect {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px; /* Spasi antara teks dan garis */
+  overflow: hidden;
+}
+
+.underline-effect::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 4px; /* Ketebalan underline */
+  background: linear-gradient(90deg, #00e5ff, #00ffa3); /* Biru kehijauan */
+  border-radius: 2px; /* Membuat garis lebih smooth */
+  box-shadow: 
+    0px 0px 4px #00e5ff, 
+    0px 0px 6px #00ffa3; /* Efek bintang */
+  transition: width 0.5s ease-in-out; /* Animasi */
+}
+
+.underline-effect:hover::after {
+  width: 100%; /* Muncul dari kiri ke kanan saat hover */
+}
