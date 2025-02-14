@@ -11,7 +11,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import { AnimatePresence } from "framer-motion";
 import useActiveSection from "./hooks/useActiveSection";
-import GlowingParticles from "./components/Particles";
+
 
 export const ThemeContext = createContext();
 

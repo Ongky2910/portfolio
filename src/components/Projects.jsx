@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt, FaReact, FaNodeJs, FaDatabase } from "react-icons/fa";
 import { SiTailwindcss, SiMysql, SiMongodb, SiJavascript, SiVercel } from "react-icons/si";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { ThemeContext } from "../App";
+import { useInView } from 'react-intersection-observer';
+
 import Slider from "react-slick"; 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -83,7 +85,7 @@ const Projects = () => {
     slidesToShow: 1, 
     slidesToScroll: 1, 
     autoplay: true, 
-    autoplaySpeed: 3000,
+    autoplaySpeed: 3000, 
   };
   
   // Ref untuk mendeteksi apakah elemen terlihat atau tidak
@@ -121,6 +123,9 @@ const Projects = () => {
             className={`relative p-6 border rounded-lg overflow-hidden text-center shadow-lg transition ${
               darkMode ? "border-gray-700 bg-gray-800" : "border-gray-300 bg-white"
             }`}
+            variants={flipIn} 
+            initial="hidden" 
+            animate="visible" 
           >
             <div className="relative w-full h-64 overflow-hidden rounded-lg">
               {/* Jika ada images, gunakan Slider untuk gambar-gambar tersebut */}
