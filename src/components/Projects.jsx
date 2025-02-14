@@ -2,7 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import { useContext, useRef } from "react";
 import { ThemeContext } from "../App";
-import Slider from "react-slick";
+import Slider from "react-slick"; 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -38,25 +38,7 @@ const projects = [
 
 const Projects = () => {
   const { darkMode } = useContext(ThemeContext);
-  const [projects, setProjects] = useState([]);
 
-  // Ambil data proyek dari API
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await fetch(
-          "https://soothing-freedom-production.up.railway.app/api/projects"
-        );
-        const data = await response.json();
-        setProjects(data.projects); // Pastikan data.projects ada di respon API
-      } catch (error) {
-        console.error("Error fetching projects:", error);
-      }
-    };
-
-    fetchProjects();
-  }, []);
-  
   // Settings untuk react-slick (slider)
   const sliderSettings = {
     dots: true, // Tambah indikator di bawah
@@ -67,7 +49,7 @@ const Projects = () => {
     autoplay: true, // Auto-slide
     autoplaySpeed: 3000, // 3 detik per slide
   };
-
+  
   // Ref untuk mendeteksi apakah elemen terlihat atau tidak
   const ref = useRef(null);
   const isInView = useInView(ref, { threshold: 0.2, once: true });
@@ -77,31 +59,28 @@ const Projects = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 1, ease: "easeInOut" },
+      transition: { duration: 1, ease: "easeInOut" }, 
     },
   };
-
+  
   const flipIn = {
-    hidden: { opacity: 0, rotateY: -90 },
-    visible: {
-      opacity: 1,
-      rotateY: 0,
-      transition: { duration: 1, ease: "easeOut" },
-    },
+    hidden: { opacity: 0, rotateY: -90 }, 
+    visible: { opacity: 1, rotateY: 0, transition: { duration: 1, ease: "easeOut" } },
   };
 
   return (
     <motion.section
-      ref={ref}
-      id="projects"
-      className={`min-h-screen flex flex-col items-center justify-center text-center py-20 transition-all duration-500
+    ref={ref}
+    id="projects"
+    className={`min-h-screen flex flex-col items-center justify-center text-center py-20 transition-all duration-500
       ${
         darkMode
           ? "bg-gradient-to-tl from-black to-gray-900 text-white"
           : "bg-gradient-to-tl from-white to-gray-100 text-black"
       }`}
-    >
-      <h2 className="text-4xl font-bold mb-8 underline-effect">My Projects</h2>
+  >
+  
+    <h2 className="text-4xl font-bold mb-8 underline-effect">My Projects</h2>
 
       {/* Desktop View (Grid) */}
       <div className="hidden md:grid grid-cols-2 md:grid-cols-3 gap-8 px-10">
@@ -114,10 +93,10 @@ const Projects = () => {
                   ? "border-gray-700 bg-gray-800"
                   : "border-gray-300 bg-white"
               }`}
-            variants={flipIn}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            transition={{ duration: 1, delay: index * 0.2 }}
+              variants={flipIn}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              transition={{ duration: 1, delay: index * 0.2 }}
           >
             <div className="relative w-full h-100 overflow-hidden rounded-lg">
               <motion.img
