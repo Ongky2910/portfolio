@@ -91,7 +91,7 @@ const Hero = () => {
           className={`px-10 py-3 rounded-lg text-lg z-10 transition font-semibold shadow-md relative top-20
             ${
               darkMode
-                ? "bg-blue-500 hover:bg-blue-300 text-white"
+                ? "bg-blue-500 hover:bg-blue-600 text-white"
                 : "bg-blue-700 hover:bg-blue-500 text-white"
             }`}
           initial={{ opacity: 0 }}
