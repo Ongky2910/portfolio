@@ -1,7 +1,10 @@
-import { motion, useInView } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { FaGithub, FaExternalLinkAlt, FaReact, FaNodeJs, FaDatabase } from "react-icons/fa";
+import { SiTailwindcss, SiMysql, SiMongodb, SiJavascript, SiVercel } from "react-icons/si";
 import { useContext, useRef } from "react";
 import { ThemeContext } from "../App";
+import { useInView } from 'react-intersection-observer';
+
 import Slider from "react-slick"; 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -41,13 +44,13 @@ const Projects = () => {
 
   // Settings untuk react-slick (slider)
   const sliderSettings = {
-    dots: true, // Tambah indikator di bawah
-    infinite: true, // Biar looping terus
-    speed: 500, // Kecepatan transisi
-    slidesToShow: 1, // Hanya satu slide terlihat
-    slidesToScroll: 1, // Scroll satu-satu
-    autoplay: true, // Auto-slide
-    autoplaySpeed: 3000, // 3 detik per slide
+    dots: true, 
+    infinite: true,
+    speed: 500, 
+    slidesToShow: 1, 
+    slidesToScroll: 1, 
+    autoplay: true, 
+    autoplaySpeed: 3000, 
   };
   
   // Ref untuk mendeteksi apakah elemen terlihat atau tidak
@@ -86,24 +89,36 @@ const Projects = () => {
       <div className="hidden md:grid grid-cols-2 md:grid-cols-3 gap-8 px-10">
         {projects.map((project, index) => (
           <motion.div
-            key={project.id} // Pakai id unik
-            className={`relative p-6 border rounded-lg overflow-hidden text-center shadow-lg transition
-              ${
-                darkMode
-                  ? "border-gray-700 bg-gray-800"
-                  : "border-gray-300 bg-white"
-              }`}
-              variants={flipIn}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              transition={{ duration: 1, delay: index * 0.2 }}
+            key={project.id}
+            className={`relative p-6 border rounded-lg overflow-hidden text-center shadow-lg transition ${
+              darkMode ? "border-gray-700 bg-gray-800" : "border-gray-300 bg-white"
+            }`}
+            variants={flipIn} 
+            initial="hidden" 
+            animate="visible" 
           >
-            <div className="relative w-full h-100 overflow-hidden rounded-lg">
-              <motion.img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover transition-all duration-500 hover:scale-110"
-              />
+            <div className="relative w-full h-64 overflow-hidden rounded-lg">
+              {/* Jika ada images, gunakan Slider untuk gambar-gambar tersebut */}
+              {project.images ? (
+                <Slider {...sliderSettings}>
+                  {project.images.map((image, index) => (
+                    <div key={index} className="w-full h-64">
+                      <img
+                        src={image}
+                        alt={`Project Image ${index + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ))}
+                </Slider>
+              ) : (
+                // Jika hanya ada gambar tunggal, tampilkan gambar tersebut
+                <img
+                  src={project.image}
+                  alt={`Project ${project.title}`}
+                  className="w-full h-64 object-cover"
+                />
+              )}
             </div>
             <div className="mt-4">
               <h3 className="text-2xl font-semibold">{project.title}</h3>

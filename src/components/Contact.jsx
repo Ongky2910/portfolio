@@ -9,7 +9,7 @@ import {
   FaWhatsapp,
   FaTelegramPlane,
 } from "react-icons/fa";
-import ContactFormModal from "./ContactFormModal"; // Import Modal
+import ContactFormModal from "./ContactFormModal"; 
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -45,6 +45,7 @@ const Contact = () => {
         : "bg-gradient-to-bl from-white to-gray-100 text-black"
     }`}
     >
+   
       <h2 className="text-4xl font-bold mb-6 text-[#64ffda]">Let's Connect!</h2>
       <motion.p
         className="text-lg max-w-2xl leading-relaxed px-6 text-gray-900 dark:text-gray-600 font-medium mb-5 "

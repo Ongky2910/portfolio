@@ -17,6 +17,7 @@ const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-100px" });
 
+  console.log("isInView (About Section):", isInView);
   const fadeInUp = {
     hidden: { opacity: 0, y: 50 },
     visible: {
