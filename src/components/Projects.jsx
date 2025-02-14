@@ -27,7 +27,7 @@ const projects = [
       { component: <SiJavascript />, color: "text-yellow-400" }, 
       { component: <SiVercel />, color: "text-black" },
     ],
-    image: project1,  // Gambar tunggal
+    image: project1,  
   },
   {
     id: 2,
@@ -40,7 +40,7 @@ const projects = [
       { component: <FaNodeJs />, color: "text-green-600" },
       { component: <SiMysql />, color: "text-blue-700" },
     ],
-    image: project2,  // Gambar tunggal
+    image: project2, 
   },
   {
     id: 3,
@@ -97,12 +97,12 @@ const Projects = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 1, ease: "easeInOut" }, // Durasi lebih lama dan easing lebih smooth
+      transition: { duration: 1, ease: "easeInOut" }, 
     },
   };
   
   const flipIn = {
-    hidden: { opacity: 0, rotateY: -90 }, // Mulai terbalik
+    hidden: { opacity: 0, rotateY: -90 }, 
     visible: { opacity: 1, rotateY: 0, transition: { duration: 1, ease: "easeOut" } },
   };
 
