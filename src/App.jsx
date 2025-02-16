@@ -41,7 +41,7 @@ function App() {
       >
         <HelmetProvider>
           <Router>
-            <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+            <Navbar />
             <AnimatedRoutes />
           </Router>
         </HelmetProvider>

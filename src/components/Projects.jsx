@@ -1,11 +1,26 @@
 import { motion } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt, FaReact, FaNodeJs, FaDatabase } from "react-icons/fa";
-import { SiTailwindcss, SiMysql, SiMongodb, SiJavascript, SiVercel } from "react-icons/si";
+import {
+  FaGithub,
+  FaExternalLinkAlt,
+  FaReact,
+  FaNodeJs,
+  FaDatabase,
+} from "react-icons/fa";
+import {
+  SiTailwindcss,
+  SiMysql,
+  SiMongodb,
+  SiJavascript,
+  SiVercel,
+} from "react-icons/si";
 import { useContext, useRef } from "react";
 import { ThemeContext } from "../App";
-import { useInView } from 'react-intersection-observer';
+import { useInView } from "react-intersection-observer";
 
-import Slider from "react-slick"; 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -24,7 +39,7 @@ const projects = [
     link: "https://github.com/Ongky2910/todo-list-apps",
     liveDemo: "https://ongky-ong-m13056.vercel.app/",
     stack: [
-      { component: <SiJavascript />, color: "text-yellow-400" }, 
+      { component: <SiJavascript />, color: "text-yellow-400" },
       { component: <SiVercel />, color: "text-black" },
     ],
     image: project1,  
@@ -36,7 +51,7 @@ const projects = [
     liveDemo: "https://ongkychills.vercel.app/",
     stack: [
       { component: <FaReact />, color: "text-blue-500" },
-      { component: <SiTailwindcss />, color: "text-blue-400" }, 
+      { component: <SiTailwindcss />, color: "text-blue-400" },
       { component: <FaNodeJs />, color: "text-green-600" },
       { component: <SiMysql />, color: "text-blue-700" },
     ],
@@ -54,12 +69,7 @@ const projects = [
       { component: <FaNodeJs />, color: "text-green-600" },
       { component: <FaDatabase />, color: "text-yellow-400" },
     ],
-    images: [
-      project3,  
-      project3b, 
-      project3c,
-      project3d,
-    ],
+    images: [project3, project3b, project3c, project3d],
   },
   {
     id: 4,
@@ -70,7 +80,7 @@ const projects = [
       { component: <SiMysql />, color: "text-blue-700" },
       { component: <FaReact />, color: "text-blue-500" },
     ],
-    image: project1,  // Gambar tunggal
+    image: project1, // Gambar tunggal
   },
 ];
 
@@ -79,15 +89,16 @@ const Projects = () => {
 
   // Settings for react-slick (slider)
   const sliderSettings = {
-    dots: true, 
+    dots: true,
     infinite: true,
-    speed: 500, 
-    slidesToShow: 1, 
-    slidesToScroll: 1, 
-    autoplay: true, 
-    autoplaySpeed: 3000, 
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    lazyLoad: "ondemand",
   };
-  
+
   // Ref untuk mendeteksi apakah elemen terlihat atau tidak
   const ref = useRef(null);
   const isInView = useInView(ref, { threshold: 0.2, once: true });
@@ -100,32 +111,40 @@ const Projects = () => {
       transition: { duration: 1, ease: "easeInOut" }, 
     },
   };
-  
+
   const flipIn = {
-    hidden: { opacity: 0, rotateY: -90 }, 
-    visible: { opacity: 1, rotateY: 0, transition: { duration: 1, ease: "easeOut" } },
+    hidden: { opacity: 0, rotateY: -90 }, // Mulai terbalik
+    visible: {
+      opacity: 1,
+      rotateY: 0,
+      transition: { duration: 1, ease: "easeOut" },
+    },
   };
 
   return (
     <motion.section
       id="projects"
       className={`min-h-screen flex flex-col items-center justify-center text-center py-20 transition-all duration-500 ${
-        darkMode ? "bg-gradient-to-tl from-black to-gray-900 text-white" : "bg-gradient-to-tl from-white to-gray-100 text-black"
+        darkMode
+          ? "bg-gradient-to-tl from-black to-gray-900 text-white"
+          : "bg-gradient-to-tl from-white to-gray-100 text-black"
       }`}
     >
       <h2 className="text-4xl font-bold mb-8 underline-effect">My Projects</h2>
 
-     {/* Desktop View */}
-     <div className="hidden md:grid grid-cols-2 md:grid-cols-3 gap-8 px-10">
+      {/* Desktop View */}
+      <div className="hidden md:grid grid-cols-2 md:grid-cols-3 gap-8 px-10">
         {projects.map((project) => (
           <motion.div
             key={project.id}
             className={`relative p-6 border rounded-lg overflow-hidden text-center shadow-lg transition ${
-              darkMode ? "border-gray-700 bg-gray-800" : "border-gray-300 bg-white"
+              darkMode
+                ? "border-gray-700 bg-gray-800"
+                : "border-gray-300 bg-white"
             }`}
-            variants={flipIn} 
-            initial="hidden" 
-            animate="visible" 
+            variants={flipIn}
+            initial="hidden"
+            animate="visible"
           >
             <div className="relative w-full h-64 overflow-hidden rounded-lg">
               {/* Jika ada images, gunakan Slider untuk gambar-gambar tersebut */}
@@ -133,9 +152,10 @@ const Projects = () => {
                 <Slider {...sliderSettings}>
                   {project.images.map((image, index) => (
                     <div key={index} className="w-full h-64">
-                      <img
+                      <LazyLoadImage
                         src={image}
                         alt={`Project Image ${index + 1}`}
+                        effect="blur"
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -182,14 +202,16 @@ const Projects = () => {
           </motion.div>
         ))}
       </div>
- {/* Mobile View */}
- <div className="md:hidden w-full px-4">
+      {/* Mobile View */}
+      <div className="md:hidden w-full px-4">
         <Slider {...sliderSettings}>
           {projects.map((project) => (
             <motion.div
               key={project.id}
               className={`relative p-6 border rounded-lg overflow-hidden text-center shadow-lg transition ${
-                darkMode ? "border-gray-700 bg-gray-800" : "border-gray-300 bg-white"
+                darkMode
+                  ? "border-gray-700 bg-gray-800"
+                  : "border-gray-300 bg-white"
               }`}
             >
               <div className="relative w-full h-48 overflow-hidden rounded-lg">

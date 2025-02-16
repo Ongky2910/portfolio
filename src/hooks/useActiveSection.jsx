@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import { throttle } from "lodash";
+
 
 const useActiveSection = (sections, threshold = 0.1) => {
   const [activeSection, setActiveSection] = useState("");
@@ -8,10 +10,10 @@ const useActiveSection = (sections, threshold = 0.1) => {
     const observerOptions = {
       root: null,
       rootMargin: "0px",
-      threshold, // Berapa persen elemen harus terlihat sebelum dianggap aktif
+      threshold,
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const handleIntersection = throttle((entries) => {
       let visibleSection = "";
 
       entries.forEach((entry) => {
@@ -24,7 +26,9 @@ const useActiveSection = (sections, threshold = 0.1) => {
         lastActiveSection.current = visibleSection;
         setActiveSection(visibleSection);
       }
-    }, observerOptions);
+    }, 200); // Throttle 200ms
+
+    const observer = new IntersectionObserver(handleIntersection, observerOptions);
 
     sections.forEach((section) => {
       const element = document.getElementById(section);
