@@ -55,16 +55,21 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
-          <Typewriter
-            words={[
-              "Full-Stack Developer",
-              "Building the Future with Code",
-              "Tech Enthusiast",
-              "Lifelong Learner",
-            ]}
-            loop
-          />
-        </motion.h2>
+       <Typewriter
+        words={[
+          "Full-Stack Developer",
+          "Building the Future with Code",
+          "Tech Enthusiast",
+          "Lifelong Learner",
+        ]}
+        loop={true}
+        cursor
+        cursorStyle="|"
+        typeSpeed={120}  
+        deleteSpeed={50} 
+        delaySpeed={2000} 
+      />
+    </motion.h2>
 
 {/* Lokasi & Status Ketersediaan */}
 <motion.div

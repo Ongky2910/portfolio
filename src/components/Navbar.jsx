@@ -37,8 +37,10 @@ const Navbar = () => {
         <div className="hidden md:flex gap-6">
           {sections.map((section) => (
             <div key={section} className="relative">
-              <Link
-  href={`#${section}`} // Ganti `to={section}` dengan `href`
+      <Link
+  to={section} // gunakan 'to' dan pastikan nilainya sesuai dengan ID section
+  smooth={true}
+  duration={500}
   className={`cursor-pointer text-lg transition-all duration-500 ${
     activeSection === section
       ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 font-extrabold"
@@ -49,6 +51,7 @@ const Navbar = () => {
 </Link>
 
 
+
               {/* Underline Animation */}
               {activeSection === section && (
                 <motion.div
@@ -57,7 +60,7 @@ const Navbar = () => {
                   initial={{ width: 0 }}
                   animate={{ width: "100%" }}
                   exit={{ width: 0 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
+          
                 />
               )}
             </div>

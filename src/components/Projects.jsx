@@ -13,10 +13,9 @@ import {
   SiJavascript,
   SiVercel,
 } from "react-icons/si";
-import { useContext, useRef } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { ThemeContext } from "../App";
 import { useInView } from "react-intersection-observer";
-
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
@@ -24,7 +23,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-// Import gambar dengan path yang benar
+
 import project1 from "/assets/httpsongky-ong-m13056.vercel.app.png";
 import project2 from "/assets/Project Portal Film.png";
 import project3 from "/assets/heroportfolio.png";
@@ -42,7 +41,7 @@ const projects = [
       { component: <SiJavascript />, color: "text-yellow-400" },
       { component: <SiVercel />, color: "text-black" },
     ],
-    image: project1,  
+    image: project1,
   },
   {
     id: 2,
@@ -55,7 +54,7 @@ const projects = [
       { component: <FaNodeJs />, color: "text-green-600" },
       { component: <SiMysql />, color: "text-blue-700" },
     ],
-    image: project2, 
+    image: project2,
   },
   {
     id: 3,
@@ -80,14 +79,31 @@ const projects = [
       { component: <SiMysql />, color: "text-blue-700" },
       { component: <FaReact />, color: "text-blue-500" },
     ],
-    image: project1, // Gambar tunggal
+    image: project1,
   },
 ];
 
+
 const Projects = () => {
   const { darkMode } = useContext(ThemeContext);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Settings for react-slick (slider)
+  // Memeriksa ukuran layar
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Atur ukuran layar mobile
+    };
+
+    handleResize(); // Cek ukuran pada saat komponen pertama kali dirender
+
+    window.addEventListener("resize", handleResize); // Tambahkan listener resize
+
+    return () => {
+      window.removeEventListener("resize", handleResize); // Hapus listener saat komponen di-unmount
+    };
+  }, []);
+
+  // Settings for react-slick (slider utama)
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -95,9 +111,22 @@ const Projects = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 3000, 
     lazyLoad: "ondemand",
   };
+
+  // Slider Settings for Project Image Carousel
+const sliderSettingsForImages = {
+  dots: true,
+  infinite: true,
+  speed: 500, // Faster speed for image transition
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 1500, // Faster autoplay for image slider
+  lazyLoad: "ondemand",
+};
+
 
   // Ref untuk mendeteksi apakah elemen terlihat atau tidak
   const ref = useRef(null);
@@ -108,7 +137,7 @@ const Projects = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 1, ease: "easeInOut" }, 
+      transition: { duration: 1, ease: "easeInOut" },
     },
   };
 
@@ -172,7 +201,7 @@ const Projects = () => {
             </div>
             <div className="mt-4">
               <h3 className="text-2xl font-semibold">{project.title}</h3>
-              <p className="text-sm text-gray-400">
+              <div className="text-sm text-gray-400">
                 {/* Render Tech Stack Icons with Colors */}
                 <div className="flex justify-center gap-2">
                   {project.stack.map((tech, index) => (
@@ -181,7 +210,7 @@ const Projects = () => {
                     </span>
                   ))}
                 </div>
-              </p>
+                </div>
               <div className="flex justify-center gap-4 mt-4">
                 <a
                   href={project.link}
@@ -202,6 +231,7 @@ const Projects = () => {
           </motion.div>
         ))}
       </div>
+
       {/* Mobile View */}
       <div className="md:hidden w-full px-4">
         <Slider {...sliderSettings}>
@@ -217,12 +247,13 @@ const Projects = () => {
               <div className="relative w-full h-48 overflow-hidden rounded-lg">
                 {/* Jika ada images, gunakan Slider untuk gambar-gambar tersebut */}
                 {project.images ? (
-                  <Slider {...sliderSettings}>
+                 <Slider {...sliderSettingsForImages}>
                     {project.images.map((image, index) => (
                       <div key={index} className="w-full h-48">
-                        <img
+                        <LazyLoadImage
                           src={image}
                           alt={`Project Image ${index + 1}`}
+                          effect="blur"
                           className="w-full h-full object-cover"
                         />
                       </div>
@@ -233,13 +264,13 @@ const Projects = () => {
                   <img
                     src={project.image}
                     alt={`Project ${project.title}`}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-full object-cover"
                   />
                 )}
               </div>
               <div className="mt-4">
                 <h3 className="text-2xl font-semibold">{project.title}</h3>
-                <p className="text-sm text-gray-400">
+                <div className="text-sm text-gray-400">
                   {/* Render Tech Stack Icons with Colors */}
                   <div className="flex justify-center gap-2">
                     {project.stack.map((tech, index) => (
@@ -248,7 +279,7 @@ const Projects = () => {
                       </span>
                     ))}
                   </div>
-                </p>
+                </div>
                 <div className="flex justify-center gap-4 mt-4">
                   <a
                     href={project.link}

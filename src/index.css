@@ -15,20 +15,7 @@ a:hover {
   color: #535bf2;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-
-body {
-  background: url('/assets/100-90-5.png');
-  background-blend-mode: overlay;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-html {
+html, body {
   scroll-behavior: smooth;
 }
 
@@ -37,6 +24,11 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
+
+section {
+  min-height: 100vh; 
+}
+
 
 @keyframes float {
   0% { transform: translateY(0); opacity: 0.3; }
