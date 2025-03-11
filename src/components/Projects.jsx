@@ -30,6 +30,12 @@ import project3 from "/assets/heroportfolio.png";
 import project3b from "/assets/lightmodeportfolio.png";
 import project3c from "/assets/darkmodeportfolio.png";
 import project3d from "/assets/mobileviewportfolio.png";
+import project4a from "/assets/Screenshot 2025-03-11 at 17.56.40.png";
+import project4b from "/assets/Screenshot 2025-03-11 at 17.57.36.png";
+import project4c from "/assets/Screenshot 2025-03-11 at 17.58.02.png";
+import project4d from "/assets/Screenshot 2025-03-11 at 17.58.46.png";
+import project4e from "/assets/Screenshot 2025-03-11 at 18.01.06.png";
+import project4f from "/assets/Screenshot 2025-03-11 at 18.01.56.png";
 
 const projects = [
   {
@@ -81,6 +87,21 @@ const projects = [
     ],
     image: project1,
   },
+  {
+    id: 5,
+    title: "Job Seeker Platform",
+    link: "https://github.com/Ongky2910/job-board",
+    liveDemo: "job-board-eight-peach.vercel.app/login",
+    stack: [
+      { component: <SiMongodb />, color: "text-green-500" },
+      { component: <FaReact />, color: "text-blue-500" },
+      { component: <SiTailwindcss />, color: "text-blue-400" },
+      { component: <FaNodeJs />, color: "text-green-600" },
+      { component: <FaDatabase />, color: "text-yellow-400" },
+    ],
+    images: [project4a, project4b, project4c, project4d, project4f],
+  },
+  
 ];
 
 
@@ -119,11 +140,11 @@ const Projects = () => {
 const sliderSettingsForImages = {
   dots: true,
   infinite: true,
-  speed: 500, // Faster speed for image transition
+  speed: 500, 
   slidesToShow: 1,
   slidesToScroll: 1,
   autoplay: true,
-  autoplaySpeed: 1500, // Faster autoplay for image slider
+  autoplaySpeed: 1500, 
   lazyLoad: "ondemand",
 };
 
