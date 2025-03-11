@@ -101,7 +101,6 @@ const projects = [
     ],
     images: [project4a, project4b, project4c, project4d, project4f],
   },
-  
 ];
 
 
