@@ -162,7 +162,7 @@ const sliderSettingsForImages = {
   };
 
   const flipIn = {
-    hidden: { opacity: 0, rotateY: -90 }, // Mulai terbalik
+    hidden: { opacity: 0, rotateY: -90 }, 
     visible: {
       opacity: 1,
       rotateY: 0,
