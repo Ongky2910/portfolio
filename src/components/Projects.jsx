@@ -252,6 +252,7 @@ const sliderSettingsForImages = {
         ))}
       </div>
 
+
       {/* Mobile View */}
       <div className="md:hidden w-full px-4">
         <Slider {...sliderSettings}>
