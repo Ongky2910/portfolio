@@ -251,6 +251,7 @@ const sliderSettingsForImages = {
           </motion.div>
         ))}
       </div>
+      
 
       {/* Mobile View */}
       <div className="md:hidden w-full px-4">
