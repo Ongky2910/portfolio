@@ -91,7 +91,7 @@ const projects = [
     id: 5,
     title: "Job Seeker Platform",
     link: "https://github.com/Ongky2910/job-board",
-    liveDemo: "job-board-eight-peach.vercel.app/login",
+    liveDemo: "https://job-board-eight-peach.vercel.app/login",
     stack: [
       { component: <SiMongodb />, color: "text-green-500" },
       { component: <FaReact />, color: "text-blue-500" },
