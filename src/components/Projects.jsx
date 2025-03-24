@@ -23,7 +23,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-
 import project1 from "/assets/httpsongky-ong-m13056.vercel.app.png";
 import project2 from "/assets/Project Portal Film.png";
 import project3 from "/assets/heroportfolio.png";
