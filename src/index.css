@@ -142,8 +142,9 @@ button:focus-visible {
   border-color: rgba(255, 204, 0, 0.9);
 }
 
+
 .futuristic-border.tools {
-  border-color: rgba(255, 100, 100, 0.5); /* Tools merah */
+  border-color: rgba(255, 100, 100, 0.5); /* Tools merah *
 }
 .futuristic-border.tools:hover {
   border-color: rgba(255, 100, 100, 0.9);
