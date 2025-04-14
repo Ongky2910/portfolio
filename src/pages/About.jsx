@@ -25,6 +25,7 @@ const About = () => {
       transition: { duration: 2, ease: "easeInOut" },
     },
   };
+  
 
   return (
     <motion.section
